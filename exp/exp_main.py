@@ -240,8 +240,8 @@ class Exp_Main(Exp_Basic):
             scheduler.step()
             print('Updating learning rate to {:.6f}'.format(scheduler.get_last_lr()[0]))
         # import matplotlib.pyplot as plt
-        np.save('./toy_exp/valid_loss_' + self.args.model_id + '_' + str(self.args.r_ema) + '.npy', valid_losses)
-        np.save('./toy_exp/test_loss_' + self.args.model_id + '_' + str(self.args.r_ema) + '.npy', test_losses)
+        # np.save('./toy_exp/valid_loss_' + self.args.model_id + '_' + str(self.args.r_ema) + '.npy', valid_losses)
+        # np.save('./toy_exp/test_loss_' + self.args.model_id + '_' + str(self.args.r_ema) + '.npy', test_losses)
         # plt.plot()
         # plt.savefig('./toy_exp/valid_loss_' + self.args.model_id + '_' + str(self.args.r_ema) + '.pdf')
         # plt.clf()
