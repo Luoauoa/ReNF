@@ -20,8 +20,8 @@ def data_provider(args, flag, pred_len=None):
 
     if flag == 'test':
         shuffle_flag = False
-        drop_last = False           # this ensures the truthness of the final test loss
-        batch_size = args.batch_size  # this will affect the value of test loss showed in the training phase and also the training dynamics due to the 'BatchNormalization'
+        drop_last = False           
+        batch_size = args.batch_size  
         freq = args.freq
     elif flag == 'pred':
         shuffle_flag = False
@@ -31,7 +31,7 @@ def data_provider(args, flag, pred_len=None):
         Data = Dataset_Pred
     else:  
         shuffle_flag = True
-        drop_last = True              # drop last for train and validation set
+        drop_last = True            
         batch_size = args.batch_size
         freq = args.freq
 
@@ -53,3 +53,4 @@ def data_provider(args, flag, pred_len=None):
         num_workers=args.num_workers,
         drop_last=drop_last)
     return data_set, data_loader
+
