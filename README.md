@@ -1,12 +1,21 @@
-# README (for review)
+# ReNF: Rethinking the Design Space of Neural Long-Term Time Series Forecasters. (For Review)
 
-1. Please download the dataset you need at [Google Drive](https://drive.google.com/file/d/1l51QsKvQPcqILT3DwfjCgx8Dsg2rpjot/view?usp=drive_link) or [Baidu Cloud](https://pan.baidu.com/s/11AWXg1Z6UwjHzmto4hesAA?pwd=9qjr).
 
-2. Note the position you place the dataset package and modify the path in `scripts` files accordingly.
+## Quick Start
 
-3. Change to the correct path, then use bash to run the specific script file, e.g., `bash ./scripts/traffic.sh`.
+1. **Download datasets** from [Google Drive](https://drive.google.com/file/d/1l51QsKvQPcqILT3DwfjCgx8Dsg2rpjot/view?usp=drive_link) or [Baidu Cloud](https://pan.baidu.com/s/11AWXg1Z6UwjHzmto4hesAA?pwd=9qjr)
 
-## New Updates
+2. **Update dataset paths** in the `scripts/` directory to match your local setup
 
-- We search hyperparameters and add a new script for PEMS08.
-- We found that use MAE as the loss function can generally yield better results, however, the optimal configuration would be changed and necessitates further adjustments due to the new training dynamics. 
+3. **Run experiments** using the provided scripts:
+   ```bash
+   bash ./scripts/traffic.sh      # Traffic dataset
+   bash ./scripts/electricity.sh  # Electricity dataset
+   bash ./scripts/weather.sh     # Weather dataset
+   # ... other datasets available
+   ```
+
+## Supported Datasets
+- ETTh1/ETTh2, ETTm1/ETTm2
+- Electricity, Traffic, Weather, Solar
+- Others including PEMS04, PEMS08, Illness
