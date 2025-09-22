@@ -1,2 +1,2 @@
 # ReNF
-The official implementation of ReNF:RETHINKING THE DESIGN SPACE OF NEURAL LONG-TERM TIME SERIES FORECASTERS
+The official implementation of ReNF: Rethinking the Design Space of Neural Long-Term Time Series Forecasters.
