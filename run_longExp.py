@@ -15,9 +15,9 @@ if __name__ == '__main__':
     parser.add_argument('--random_seed', type=int, default=2021, help='random seed')
 
     # basic config
-    parser.add_argument('--is_training', type=int, required=True, default=1, help='status')
-    parser.add_argument('--model_id', type=str, required=True, default='test', help='model id')
-    parser.add_argument('--model', type=str, required=True, default='Autoformer',
+    parser.add_argument('--is_training', type=int, default=1, help='status')
+    parser.add_argument('--model_id', type=str, default='test', help='model id')
+    parser.add_argument('--model', type=str, default='TimeCapsule',
                         help='model name, options: [Autoformer, Informer, Transformer]')
 
     # data loader
@@ -33,10 +33,9 @@ if __name__ == '__main__':
 
     # forecasting task
     parser.add_argument('--seq_len', type=int, default=96, help='input sequence length')
-    parser.add_argument('--label_len', type=int, default=48, help='start token length')
+    parser.add_argument('--label_len', type=int, default=0, help='start token length')
     parser.add_argument('--pred_len', type=int, default=96, help='prediction sequence length')
-
-
+    parser.add_argument('--alpha_freq', type=float, default=0., help='weight of frequency domain loss')
     # DLinear
     #parser.add_argument('--individual', action='store_true', default=False, help='DLinear: a linear layer for each variate(channel) individually')
 
@@ -75,13 +74,15 @@ if __name__ == '__main__':
     parser.add_argument('--output_attention', action='store_true', help='whether to output attention in ecoder')
     parser.add_argument('--do_predict', action='store_true', help='whether to predict unseen future data')
 
-    # time capsule
+    # GoodModel
     parser.add_argument('--level_dim', type=int, default=1, help='expand the time series with an additional level dimension')
-    parser.add_argument('--d_compress', type=int, nargs='+', default=[4, 8, 4], help='values of three compression dimensions')
-    parser.add_argument('--jepa', type=int, default=1, help='whether to use jepa')
+
+    parser.add_argument('--norm_name', type=str, default='instance', help='normalization name')
     parser.add_argument('--n_block', type=int, default=1, help='number of blocks')
+    parser.add_argument('--pe', type=int, default=1, help='use positional encoding')
+    parser.add_argument('--r_ema', type=float, default=0.998, help='r_ema')
     # optimization
-    parser.add_argument('--num_workers', type=int, default=0, help='data loader num workers')
+    parser.add_argument('--num_workers', type=int, default=10, help='data loader num workers')
     parser.add_argument('--itr', type=int, default=1, help='experiments times')
     parser.add_argument('--gamma', type=float, default=0.7, help='lr decay rate')
     parser.add_argument('--train_epochs', type=int, default=100, help='train epochs')
@@ -90,7 +91,7 @@ if __name__ == '__main__':
     parser.add_argument('--learning_rate', type=float, default=1e-4, help='optimizer learning rate')
     parser.add_argument('--des', type=str, default='test', help='exp description')
     parser.add_argument('--loss', type=str, default='mse', help='loss function')
-    parser.add_argument('--lradj', type=str, default='type3', help='adjust learning rate')
+    parser.add_argument('--lradj', type=str, default='TST', help='adjust learning rate')
     parser.add_argument('--pct_start', type=float, default=0.3, help='pct_start')
     parser.add_argument('--use_amp', action='store_true', help='use automatic mixed precision training', default=False)
 
@@ -102,7 +103,7 @@ if __name__ == '__main__':
     parser.add_argument('--test_flop', action='store_true', default=False, help='See utils/tools for usage')
 
     args = parser.parse_args()
-
+    
     # random seed
     fix_seed = args.random_seed
     random.seed(fix_seed)
@@ -116,12 +117,9 @@ if __name__ == '__main__':
         device_ids = args.devices.split(',')
         args.device_ids = [int(id_) for id_ in device_ids]
         args.gpu = args.device_ids[0]
-
     print('Args in experiment:')
     print(args)
-
     Exp = Exp_Main
-
     if args.is_training:
         for ii in range(args.itr):
             # setting record of experiments
@@ -129,13 +127,14 @@ if __name__ == '__main__':
                 args.model_id,
                 args.model,
                 args.data,
-                args.d_compress,
+                # args.d_compress,
                 args.features,
                 args.seq_len,
                 args.label_len,
                 args.pred_len,
                 args.d_model,
                 args.n_heads,
+                args.e_layers,
                 args.n_block,
                 args.d_ff,
                 args.factor,
@@ -148,7 +147,7 @@ if __name__ == '__main__':
             exp.train(setting)
 
             print('>>>>>>>testing : {}<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'.format(setting))
-            exp.test(setting)
+            exp.test(setting, test=1)
 
             if args.do_predict:
                 print('>>>>>>>predicting : {}<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'.format(setting))
@@ -167,7 +166,7 @@ if __name__ == '__main__':
                                                                                                     args.d_model,
                                                                                                     args.n_heads,
                                                                                                     args.e_layers,
-                                                                                                    args.d_layers,
+                                                                                                    args.n_block,
                                                                                                     args.d_ff,
                                                                                                     args.factor,
                                                                                                     args.embed,

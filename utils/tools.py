@@ -2,6 +2,7 @@ import numpy as np
 import torch
 import matplotlib.pyplot as plt
 import time
+import copy
 
 plt.switch_backend('agg')
 
@@ -44,7 +45,7 @@ class EarlyStopping:
         self.counter = 0
         self.best_score = None
         self.early_stop = False
-        self.val_loss_min = np.Inf
+        self.val_loss_min = np.inf
         self.delta = delta
 
     def __call__(self, val_loss, model, path):
@@ -119,10 +120,40 @@ def test_params_flop(model,x_shape):
 
 def ema_update(updated_value, new_value, decay=0.996, type='model'):
     if type == 'model':
-        for history_param, new_param in zip(updated_value.parameters(), new_value.parameters()):
-            history_param.data.copy_(decay * history_param.data + (1 - decay) * new_param.data)
-            history_param.requires_grad_(False)
+        if decay == 0.0:
+            updated_value.load_state_dict(new_value.state_dict())
+            return updated_value
+
+        new_state_dict = new_value.state_dict()
+        old_state_dict = updated_value.state_dict()
+        for key in old_state_dict.keys():
+            old_state_dict[key].data.copy_(
+                old_state_dict[key].data * decay + new_state_dict[key].data * (1 - decay)
+            )
         return updated_value
-    # else
-    updated_value = decay * updated_value + (1 - decay) * new_value
-    return updated_value
+    else:
+        return updated_value * decay + new_value * (1 - decay)
+
+
+def mean_filter(seq, window_size=10):
+    B, T, V  = seq.shape
+    seq_norm = []
+    seq_filter = []
+    stds = []
+    if T <= 2 * window_size:
+      print("window size is too long")  
+    for i in range(T):
+        seq_win = None
+        if i < window_size:
+            seq_win = seq[:, :i+window_size, :]
+        elif i >= T- 1 - window_size:
+            seq_win = seq[:, i-window_size:, :]
+        else: 
+            seq_win = seq[:, i-window_size:i+window_size, :]
+        mean = torch.mean(seq_win, dim=1)
+        std = torch.std(seq_win, dim=1)
+        seq_filter.append(mean)
+        seq_norm.append((seq[:, i, :] - mean) / (std + 1e-8))
+        stds.append(std)
+
+    return torch.stack(seq_norm, dim=1), torch.stack(seq_filter, dim=1), torch.stack(stds, dim=1)

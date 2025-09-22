@@ -1,0 +1,675 @@
+./scripts2/traffic.sh: line 80: 4162766 Killed                  python -u run_longExp.py --random_seed $random_seed --is_training 1 --root_path $root_path_name --data_path ${data_path_name[0]} --model_id ${model_id_name[0]}'_'$seq_len'_'$pred_len --model $model_name --data ${data_name[0]} --features M --jepa 0 --revin 1 --d_layers 6 --n_block 2 --pe 0 --seq_len $seq_len --pred_len $pred_len --r_ema 0.999 --d_ff 1024 --alpha_freq 0.2 --dropout 0.3 --des 'Exp' --train_epochs 45 --patience 15 --gamma 0.8 --itr 1 --batch_size 64 --learning_rate 1e-3 > logs_/LongForecasting02/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.log
+./scripts2/traffic.sh: line 108: l_name_traffic_512_720.log: command not found
+./scripts2/traffic.sh: line 109: syntax error near unexpected token `done'
+./scripts2/traffic.sh: line 109: `done'
+Traceback (most recent call last):
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/run_longExp.py", line 149, in <module>
+    exp.train(setting)
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/exp/exp_main.py", line 251, in train
+    vali_loss = self.vali(self.vali_data, self.vali_loader, criterion_val)  # use the same indicator as in training phase
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/exp/exp_main.py", line 133, in vali
+    loss = criterion(pred, true)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/loss.py", line 101, in forward
+    return F.l1_loss(input, target, reduction=self.reduction)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/functional.py", line 3335, in l1_loss
+    expanded_input, expanded_target = torch.broadcast_tensors(input, target)
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/functional.py", line 76, in broadcast_tensors
+    return _VF.broadcast_tensors(tensors)  # type: ignore[attr-defined]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: The size of tensor a (126) must match the size of tensor b (128) at non-singleton dimension 1
+Traceback (most recent call last):
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/run_longExp.py", line 149, in <module>
+    exp.train(setting)
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/exp/exp_main.py", line 228, in train
+    loss.backward()
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/_tensor.py", line 525, in backward
+    torch.autograd.backward(
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/autograd/__init__.py", line 267, in backward
+    _engine_run_backward(
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/autograd/graph.py", line 744, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 304.00 MiB. GPU 
+Traceback (most recent call last):
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/run_longExp.py", line 149, in <module>
+    exp.train(setting)
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/exp/exp_main.py", line 192, in train
+    outputs = self.model(batch_x)
+              ^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/models/GoodModel.py", line 53, in forward
+    ys = self.decoder(x) # (B, L, V, T)
+         ^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/models/GoodModel.py", line 78, in forward
+    ys = self.receiver(x.transpose(1, 2))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/models/GoodModel.py", line 187, in forward
+    y_k, rep = layer(x_k, rep_prev=rep)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/models/GoodModel.py", line 160, in forward
+    mid = self.activation(rep) + self.drop_skip(x) + self.drop_skip2(rep_prev)
+                                 ^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/dropout.py", line 59, in forward
+    return F.dropout(input, self.p, self.training, self.inplace)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/functional.py", line 1295, in dropout
+    return _VF.dropout_(input, p, training) if inplace else _VF.dropout(input, p, training)
+                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 108.00 MiB. GPU 
+Traceback (most recent call last):
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/run_longExp.py", line 149, in <module>
+    exp.train(setting)
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/exp/exp_main.py", line 192, in train
+    outputs = self.model(batch_x)
+              ^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/models/GoodModel.py", line 53, in forward
+    ys = self.decoder(x) # (B, L, V, T)
+         ^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/models/GoodModel.py", line 78, in forward
+    ys = self.receiver(x.transpose(1, 2))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/models/GoodModel.py", line 187, in forward
+    y_k, rep = layer(x_k, rep_prev=rep)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/models/GoodModel.py", line 158, in forward
+    rep = self.body[i](rep)
+          ^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/models/GoodModel.py", line 132, in forward
+    y = self.block(x)
+        ^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+            ^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/dropout.py", line 59, in forward
+    return F.dropout(input, self.p, self.training, self.inplace)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/functional.py", line 1295, in dropout
+    return _VF.dropout_(input, p, training) if inplace else _VF.dropout(input, p, training)
+                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 432.00 MiB. GPU 
+Traceback (most recent call last):
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/run_longExp.py", line 149, in <module>
+    exp.train(setting)
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/exp/exp_main.py", line 192, in train
+    outputs = self.model(batch_x)
+              ^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/models/GoodModel.py", line 53, in forward
+    ys = self.decoder(x) # (B, L, V, T)
+         ^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/models/GoodModel.py", line 78, in forward
+    ys = self.receiver(x.transpose(1, 2))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/models/GoodModel.py", line 187, in forward
+    y_k, rep = layer(x_k, rep_prev=rep)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/models/GoodModel.py", line 155, in forward
+    rep = x = self.bottom(input) + self.drop_rep_pre(rep_prev)
+              ~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 432.00 MiB. GPU 
+Traceback (most recent call last):
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/run_longExp.py", line 149, in <module>
+    exp.train(setting)
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/exp/exp_main.py", line 192, in train
+    outputs = self.model(batch_x)
+              ^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/models/GoodModel.py", line 53, in forward
+    ys = self.decoder(x) # (B, L, V, T)
+         ^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/models/GoodModel.py", line 78, in forward
+    ys = self.receiver(x.transpose(1, 2))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/models/GoodModel.py", line 189, in forward
+    y_cat = torch.cat(out, dim=-1)
+            ^^^^^^^^^^^^^^^^^^^^^^
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 286.00 MiB. GPU 
+Traceback (most recent call last):
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/run_longExp.py", line 149, in <module>
+    exp.train(setting)
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/exp/exp_main.py", line 253, in train
+    test_loss = self.vali(self.test_data, self.test_loader, criterion)   # use test indicator
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/exp/exp_main.py", line 127, in vali
+    pred = outputs[-1][:, -self.args.pred_len:, f_dim:].detach().cpu()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/run_longExp.py", line 149, in <module>
+    exp.train(setting)
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/exp/exp_main.py", line 177, in train
+    batch_x = batch_x.float().to(self.device)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/run_longExp.py", line 149, in <module>
+    exp.train(setting)
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/exp/exp_main.py", line 213, in train
+    train_loss.append(loss.item())
+                      ^^^^^^^^^^^
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/run_longExp.py", line 149, in <module>
+    exp.train(setting)
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/exp/exp_main.py", line 213, in train
+    train_loss.append(loss.item())
+                      ^^^^^^^^^^^
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/run_longExp.py", line 149, in <module>
+    exp.train(setting)
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/exp/exp_main.py", line 177, in train
+    batch_x = batch_x.float().to(self.device)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/run_longExp.py", line 149, in <module>
+    exp.train(setting)
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/exp/exp_main.py", line 253, in train
+    test_loss = self.vali(self.test_data, self.test_loader, criterion)   # use test indicator
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/exp/exp_main.py", line 127, in vali
+    pred = outputs[-1][:, -self.args.pred_len:, f_dim:].detach().cpu()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/run_longExp.py", line 149, in <module>
+    exp.train(setting)
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/exp/exp_main.py", line 177, in train
+    batch_x = batch_x.float().to(self.device)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+Exception ignored in: <function _releaseLock at 0x7f7f48b59f80>
+Traceback (most recent call last):
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/logging/__init__.py", line 243, in _releaseLock
+    def _releaseLock():
+    
+KeyboardInterrupt: 
+Traceback (most recent call last):
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/run_longExp.py", line 149, in <module>
+    exp.train(setting)
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/exp/exp_main.py", line 176, in train
+    model_optim.zero_grad()
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/_compile.py", line 20, in inner
+    @functools.wraps(fn)
+
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/run_longExp.py", line 149, in <module>
+    exp.train(setting)
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/exp/exp_main.py", line 165, in train
+    for i, (batch_x, batch_y, batch_x_mark, batch_y_mark) in enumerate(self.train_loader):
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/utils/data/dataloader.py", line 631, in __next__
+    data = self._next_data()
+           ^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/utils/data/dataloader.py", line 1329, in _next_data
+    idx, data = self._get_data()
+                ^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/utils/data/dataloader.py", line 1295, in _get_data
+    success, data = self._try_get_data()
+                    ^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/utils/data/dataloader.py", line 1133, in _try_get_data
+    data = self._data_queue.get(timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/multiprocessing/queues.py", line 122, in get
+    return _ForkingPickler.loads(res)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/multiprocessing/reductions.py", line 495, in rebuild_storage_fd
+    fd = df.detach()
+         ^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/multiprocessing/resource_sharer.py", line 57, in detach
+    with _resource_sharer.get_connection(self._id) as conn:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/multiprocessing/resource_sharer.py", line 86, in get_connection
+    c = Client(address, authkey=process.current_process().authkey)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/multiprocessing/connection.py", line 525, in Client
+    answer_challenge(c, authkey)
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/multiprocessing/connection.py", line 953, in answer_challenge
+    message = connection.recv_bytes(256)         # reject large message
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/multiprocessing/connection.py", line 216, in recv_bytes
+    buf = self._recv_bytes(maxlength)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/multiprocessing/connection.py", line 430, in _recv_bytes
+    buf = self._recv(4)
+          ^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/multiprocessing/connection.py", line 395, in _recv
+    chunk = read(handle, remaining)
+            ^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/run_longExp.py", line 147, in <module>
+    exp = Exp(args)  # set experiments
+          ^^^^^^^^^
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/exp/exp_main.py", line 37, in __init__
+    self.model = self._build_model().to(self.device)
+                 ^^^^^^^^^^^^^^^^^^^
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/exp/exp_main.py", line 51, in _build_model
+    model = model_dict[self.args.model].Model(self.args, d_inputs=self.d_inputs, d_folds=self.d_folds,
+            ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+KeyError: 'GoodModel'
+Traceback (most recent call last):
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/run_longExp.py", line 5, in <module>
+    from exp.exp_main import Exp_Main
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/exp/exp_main.py", line 2, in <module>
+    from data_provider.data_factory import data_provider
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/data_provider/data_factory.py", line 1, in <module>
+    from data_provider.data_loader import Dataset_ETT_hour, Dataset_ETT_minute, Dataset_Custom, Dataset_Pred, Dataset_PEMS, Dataset_Solar
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/data_provider/data_loader.py", line 7, in <module>
+    from sklearn.preprocessing import StandardScaler
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/sklearn/__init__.py", line 73, in <module>
+    from .base import clone  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/sklearn/base.py", line 19, in <module>
+    from .utils._metadata_requests import _MetadataRequester, _routing_enabled
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/sklearn/utils/__init__.py", line 9, in <module>
+    from ._chunking import gen_batches, gen_even_slices
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/sklearn/utils/_chunking.py", line 11, in <module>
+    from ._param_validation import Interval, validate_params
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/sklearn/utils/_param_validation.py", line 17, in <module>
+    from .validation import _is_arraylike_not_scalar
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/sklearn/utils/validation.py", line 21, in <module>
+    from ..utils._array_api import _asarray_with_order, _is_numpy_namespace, get_namespace
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/sklearn/utils/_array_api.py", line 20, in <module>
+    from .fixes import parse_version
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/sklearn/utils/fixes.py", line 16, in <module>
+    import scipy.stats
+  File "/home/lyh/.local/lib/python3.12/site-packages/scipy/stats/__init__.py", line 626, in <module>
+    from ._stats_py import *
+  File "/home/lyh/.local/lib/python3.12/site-packages/scipy/stats/_stats_py.py", line 42, in <module>
+    from scipy.optimize import milp, LinearConstraint
+  File "/home/lyh/.local/lib/python3.12/site-packages/scipy/optimize/__init__.py", line 435, in <module>
+    from ._linprog import linprog, linprog_verbose_callback
+  File "/home/lyh/.local/lib/python3.12/site-packages/scipy/optimize/_linprog.py", line 22, in <module>
+    from ._linprog_ip import _linprog_ip
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1128, in get_code
+  File "<frozen importlib._bootstrap_external>", line 757, in _compile_bytecode
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/run_longExp.py", line 147, in <module>
+    exp = Exp(args)  # set experiments
+          ^^^^^^^^^
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/exp/exp_main.py", line 37, in __init__
+    self.model = self._build_model().to(self.device)
+                 ^^^^^^^^^^^^^^^^^^^
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/exp/exp_main.py", line 51, in _build_model
+    model = model_dict[self.args.model].Model(self.args, d_inputs=self.d_inputs, d_folds=self.d_folds,
+            ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+KeyError: 'GoodModel'
+Traceback (most recent call last):
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/run_longExp.py", line 147, in <module>
+    exp = Exp(args)  # set experiments
+          ^^^^^^^^^
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/exp/exp_main.py", line 37, in __init__
+    self.model = self._build_model().to(self.device)
+                 ^^^^^^^^^^^^^^^^^^^
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/exp/exp_main.py", line 51, in _build_model
+    model = model_dict[self.args.model].Model(self.args, d_inputs=self.d_inputs, d_folds=self.d_folds,
+            ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+KeyError: 'GoodModel'
+Exception ignored in: <function _releaseLock at 0x7f1608ea5f80>
+Traceback (most recent call last):
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/logging/__init__.py", line 243, in _releaseLock
+    def _releaseLock():
+    
+KeyboardInterrupt: 
+Traceback (most recent call last):
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/run_longExp.py", line 147, in <module>
+    exp = Exp(args)  # set experiments
+          ^^^^^^^^^
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/exp/exp_main.py", line 33, in __init__
+    B, T, V = next(iter(self.train_loader))[0].shape
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/utils/data/dataloader.py", line 631, in __next__
+    data = self._next_data()
+           ^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/utils/data/dataloader.py", line 1329, in _next_data
+    idx, data = self._get_data()
+                ^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/utils/data/dataloader.py", line 1295, in _get_data
+    success, data = self._try_get_data()
+                    ^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/torch/utils/data/dataloader.py", line 1133, in _try_get_data
+    data = self._data_queue.get(timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/multiprocessing/queues.py", line 113, in get
+    if not self._poll(timeout):
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/multiprocessing/connection.py", line 257, in poll
+    return self._poll(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/multiprocessing/connection.py", line 440, in _poll
+    r = wait([self], timeout)
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/multiprocessing/connection.py", line 1136, in wait
+    ready = selector.select(timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/selectors.py", line 415, in select
+    fd_event_list = self._selector.poll(timeout)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+bash: ./scripts2/traffic: No such file or directory
+Traceback (most recent call last):
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/run_longExp.py", line 147, in <module>
+    exp = Exp(args)  # set experiments
+          ^^^^^^^^^
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/exp/exp_main.py", line 37, in __init__
+    self.model = self._build_model().to(self.device)
+                 ^^^^^^^^^^^^^^^^^^^
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/exp/exp_main.py", line 51, in _build_model
+    model = model_dict[self.args.model].Model(self.args, d_inputs=self.d_inputs, d_folds=self.d_folds,
+            ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+KeyError: 'GoodModel'
+Traceback (most recent call last):
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/run_longExp.py", line 147, in <module>
+    exp = Exp(args)  # set experiments
+          ^^^^^^^^^
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/exp/exp_main.py", line 37, in __init__
+    self.model = self._build_model().to(self.device)
+                 ^^^^^^^^^^^^^^^^^^^
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/exp/exp_main.py", line 51, in _build_model
+    model = model_dict[self.args.model].Model(self.args, d_inputs=self.d_inputs, d_folds=self.d_folds,
+            ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+KeyError: 'GoodModel'
+Traceback (most recent call last):
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/run_longExp.py", line 5, in <module>
+    from exp.exp_main import Exp_Main
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/exp/exp_main.py", line 2, in <module>
+    from data_provider.data_factory import data_provider
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/data_provider/data_factory.py", line 1, in <module>
+    from data_provider.data_loader import Dataset_ETT_hour, Dataset_ETT_minute, Dataset_Custom, Dataset_Pred, Dataset_PEMS, Dataset_Solar
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/data_provider/data_loader.py", line 7, in <module>
+    from sklearn.preprocessing import StandardScaler
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/sklearn/__init__.py", line 73, in <module>
+    from .base import clone  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/sklearn/base.py", line 19, in <module>
+    from .utils._metadata_requests import _MetadataRequester, _routing_enabled
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/sklearn/utils/__init__.py", line 9, in <module>
+    from ._chunking import gen_batches, gen_even_slices
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/sklearn/utils/_chunking.py", line 11, in <module>
+    from ._param_validation import Interval, validate_params
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/sklearn/utils/_param_validation.py", line 17, in <module>
+    from .validation import _is_arraylike_not_scalar
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/sklearn/utils/validation.py", line 21, in <module>
+    from ..utils._array_api import _asarray_with_order, _is_numpy_namespace, get_namespace
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/sklearn/utils/_array_api.py", line 20, in <module>
+    from .fixes import parse_version
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/sklearn/utils/fixes.py", line 16, in <module>
+    import scipy.stats
+  File "/home/lyh/.local/lib/python3.12/site-packages/scipy/stats/__init__.py", line 626, in <module>
+    from ._stats_py import *
+  File "/home/lyh/.local/lib/python3.12/site-packages/scipy/stats/_stats_py.py", line 52, in <module>
+    from . import distributions
+  File "/home/lyh/.local/lib/python3.12/site-packages/scipy/stats/distributions.py", line 8, in <module>
+    from ._distn_infrastructure import (rv_discrete, rv_continuous, rv_frozen)  # noqa: F401
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.local/lib/python3.12/site-packages/scipy/stats/_distn_infrastructure.py", line 27, in <module>
+    from scipy import integrate
+  File "<frozen importlib._bootstrap>", line 1412, in _handle_fromlist
+  File "/home/lyh/.local/lib/python3.12/site-packages/scipy/__init__.py", line 131, in __getattr__
+    return _importlib.import_module(f'scipy.{name}')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lyh/.local/lib/python3.12/site-packages/scipy/integrate/__init__.py", line 106, in <module>
+    from ._ode import *
+  File "/home/lyh/.local/lib/python3.12/site-packages/scipy/integrate/_ode.py", line 91, in <module>
+    from . import _lsoda
+KeyboardInterrupt
+./scripts2/traffic.sh: line 20: 1458200 Killed                  python -u run_longExp.py --random_seed $random_seed --is_training 1 --root_path $root_path_name --data_path ${data_path_name[0]} --model_id ${model_id_name[0]}'_'$seq_len'_'$pred_len --model $model_name --data ${data_name[0]} --features M --jepa 0 --revin 1 --d_layers 6 --n_block 1 --pe 0 --seq_len $seq_len --pred_len $pred_len --r_ema 0.999 --d_ff 2048 --alpha_freq 0.2 --dropout 0.5 --des 'Exp' --train_epochs 40 --patience 15 --gamma 0.9 --itr 1 --batch_size 64 --learning_rate 8e-4 > logs/LongForecasting02/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.log
+./scripts2/traffic.sh: line 20: 1545156 Killed                  python -u run_longExp.py --random_seed $random_seed --is_training 1 --root_path $root_path_name --data_path ${data_path_name[0]} --model_id ${model_id_name[0]}'_'$seq_len'_'$pred_len --model $model_name --data ${data_name[0]} --features M --jepa 0 --revin 1 --d_layers 6 --n_block 1 --pe 0 --seq_len $seq_len --pred_len $pred_len --r_ema 0.999 --d_ff 2048 --alpha_freq 0.2 --dropout 0.5 --des 'Exp' --train_epochs 40 --patience 15 --gamma 0.9 --itr 1 --batch_size 64 --learning_rate 8e-4 > logs/LongForecasting02/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.log
+./scripts2/traffic.sh: line 20: 1550479 Killed                  python -u run_longExp.py --random_seed $random_seed --is_training 1 --root_path $root_path_name --data_path ${data_path_name[0]} --model_id ${model_id_name[0]}'_'$seq_len'_'$pred_len --model $model_name --data ${data_name[0]} --features M --jepa 0 --revin 1 --d_layers 6 --n_block 1 --pe 0 --seq_len $seq_len --pred_len $pred_len --r_ema 0.999 --d_ff 2048 --alpha_freq 0.2 --dropout 0.5 --des 'Exp' --train_epochs 40 --patience 15 --gamma 0.9 --itr 1 --batch_size 64 --learning_rate 8e-4 > logs/LongForecasting02/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.log
+./scripts2/traffic.sh: line 50: 1557359 Killed                  python -u run_longExp.py --random_seed $random_seed --is_training 1 --root_path $root_path_name --data_path ${data_path_name[0]} --model_id ${model_id_name[0]}'_'$seq_len'_'$pred_len --model $model_name --data ${data_name[0]} --features M --jepa 0 --revin 1 --d_layers 6 --n_block 1 --pe 0 --seq_len $seq_len --pred_len $pred_len --r_ema 0.999 --d_ff 2048 --alpha_freq 0.2 --dropout 0.5 --des 'Exp' --train_epochs 40 --patience 15 --gamma 0.9 --itr 1 --batch_size 64 --learning_rate 8e-4 > logs/LongForecasting02/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.log
+./scripts2/electricity.sh: line 21: 3495085 Killed                  python -u run_longExp.py --random_seed $random_seed --is_training 1 --root_path $root_path_name --data_path ${data_path_name[0]} --model_id ${model_id_name[0]}'_'$seq_len'_'$pred_len --model $model_name --data ${data_name[0]} --features M --jepa 0 --revin 1 --d_layers 4 --n_block 1 --pe 1 --seq_len $seq_len --pred_len $pred_len --r_ema 0.999 --alpha_freq 0.7 --d_ff 2048 --dropout 0.3 --des 'Exp' --train_epochs 10 --patience 3 --gamma 0.8 --itr 1 --batch_size 16 --learning_rate 5e-4 > logs/LongForecasting02/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.log
+./scripts2/weather.sh: line 108: 3697580 Killed                  python -u run_longExp.py --random_seed $random_seed --is_training 1 --root_path $root_path_name --data_path ${data_path_name[0]} --model_id ${model_id_name[0]}'_'$seq_len'_'$pred_len --model $model_name --data ${data_name[0]} --features M --revin 1 --norm_name 'layer' --jepa 0 --pe 1 --d_layers 3 --n_block 1 --seq_len $seq_len --pred_len $pred_len --r_ema 0.996 --alpha_freq 0.1 --d_ff 64 --dropout 0.45 --gamma 0.1 --des 'Exp' --train_epochs 3 --itr 1 --batch_size 64 --learning_rate 2e-3 > logs/LongForecasting02/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.logs
+./scripts2/electricity.sh: line 50: 3712946 Killed                  python -u run_longExp.py --random_seed $random_seed --is_training 1 --root_path $root_path_name --data_path ${data_path_name[0]} --model_id ${model_id_name[0]}'_'$seq_len'_'$pred_len --model $model_name --data ${data_name[0]} --features M --jepa 0 --revin 1 --d_layers 4 --n_block 1 --pe 1 --seq_len $seq_len --pred_len $pred_len --r_ema 0.999 --alpha_freq 0.7 --d_ff 2048 --dropout 0.5 --des 'Exp' --train_epochs 8 --patience 3 --gamma 0.8 --itr 1 --batch_size 16 --learning_rate 5e-4 > logs/LongForecasting02/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.log
+./scripts2/traffic.sh: line 20: 3514720 Killed                  python -u run_longExp.py --random_seed $random_seed --is_training 1 --root_path $root_path_name --data_path ${data_path_name[0]} --model_id ${model_id_name[0]}'_'$seq_len'_'$pred_len --model $model_name --data ${data_name[0]} --features M --jepa 0 --revin 1 --d_layers 6 --n_block 1 --pe 0 --seq_len $seq_len --pred_len $pred_len --r_ema 0.999 --d_ff 2048 --alpha_freq 0.2 --dropout 0.5 --des 'Exp' --train_epochs 40 --patience 15 --gamma 0.9 --itr 1 --batch_size 64 --learning_rate 8e-4 > logs/LongForecasting02/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.log
+./scripts2/electricity.sh: line 50: 3762009 Killed                  python -u run_longExp.py --random_seed $random_seed --is_training 1 --root_path $root_path_name --data_path ${data_path_name[0]} --model_id ${model_id_name[0]}'_'$seq_len'_'$pred_len --model $model_name --data ${data_name[0]} --features M --jepa 0 --revin 1 --d_layers 4 --n_block 1 --pe 1 --seq_len $seq_len --pred_len $pred_len --r_ema 0.999 --alpha_freq 0.7 --d_ff 2048 --dropout 0.5 --des 'Exp' --train_epochs 8 --patience 3 --gamma 0.8 --itr 1 --batch_size 16 --learning_rate 5e-4 > logs/LongForecasting02/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.log
+./scripts2/electricity.sh: line 79: 3796714 Killed                  python -u run_longExp.py --random_seed $random_seed --is_training 1 --root_path $root_path_name --data_path ${data_path_name[0]} --model_id ${model_id_name[0]}'_'$seq_len'_'$pred_len --model $model_name --data ${data_name[0]} --features M --jepa 0 --revin 1 --d_layers 4 --n_block 1 --pe 1 --seq_len $seq_len --pred_len $pred_len --r_ema 0.999 --alpha_freq 0.7 --d_ff 2048 --dropout 0.5 --des 'Exp' --train_epochs 12 --patience 3 --gamma 0.8 --itr 1 --batch_size 16 --learning_rate 3e-4 > logs/LongForecasting02/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.log
+./scripts2/traffic.sh: line 20: 3779341 Killed                  python -u run_longExp.py --random_seed $random_seed --is_training 1 --root_path $root_path_name --data_path ${data_path_name[0]} --model_id ${model_id_name[0]}'_'$seq_len'_'$pred_len --model $model_name --data ${data_name[0]} --features M --jepa 0 --revin 1 --d_layers 6 --n_block 1 --pe 0 --seq_len $seq_len --pred_len $pred_len --r_ema 0.999 --d_ff 2048 --alpha_freq 0.2 --dropout 0.5 --des 'Exp' --train_epochs 40 --patience 15 --gamma 0.9 --itr 1 --batch_size 64 --learning_rate 8e-4 > logs/LongForecasting02/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.log
+./scripts2/traffic.sh: line 20: 3885450 Killed                  python -u run_longExp.py --random_seed $random_seed --is_training 1 --root_path $root_path_name --data_path ${data_path_name[0]} --model_id ${model_id_name[0]}'_'$seq_len'_'$pred_len --model $model_name --data ${data_name[0]} --features M --jepa 0 --revin 1 --d_layers 6 --n_block 1 --pe 0 --seq_len $seq_len --pred_len $pred_len --r_ema 0.999 --d_ff 2048 --alpha_freq 0.2 --dropout 0.5 --des 'Exp' --train_epochs 40 --patience 15 --gamma 0.9 --itr 1 --batch_size 64 --learning_rate 8e-4 > logs/LongForecasting02/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.log
+./scripts2/traffic.sh: line 50: 3966292 Killed                  python -u run_longExp.py --random_seed $random_seed --is_training 1 --root_path $root_path_name --data_path ${data_path_name[0]} --model_id ${model_id_name[0]}'_'$seq_len'_'$pred_len --model $model_name --data ${data_name[0]} --features M --jepa 0 --revin 1 --d_layers 6 --n_block 1 --pe 0 --seq_len $seq_len --pred_len $pred_len --r_ema 0.999 --d_ff 2048 --alpha_freq 0.2 --dropout 0.5 --des 'Exp' --train_epochs 40 --patience 15 --gamma 0.9 --itr 1 --batch_size 64 --learning_rate 8e-4 > logs/LongForecasting02/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.log
+bash: ./scripts2/traffic: No such file or directory
+Traceback (most recent call last):
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/run_longExp.py", line 149, in <module>
+    exp.train(setting)
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/exp/exp_main.py", line 209, in train
+    loss += gamma / (j + 1) * self.time_freq_loss(outputs[j], batch_y[:, :(j + 1) * k, f_dim:], self.args.alpha_freq)
+    ^^^^
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/run_longExp.py", line 150, in <module>
+    exp.test(setting, test=1)
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/exp/exp_main.py", line 391, in test
+    rep_store['rep'+str(n)] = reps[n].detach().cpu().numpy()
+                              ^^^^^^^^^^^^^^
+AttributeError: 'numpy.ndarray' object has no attribute 'detach'
+Traceback (most recent call last):
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/run_longExp.py", line 150, in <module>
+    exp.test(setting, test=1)
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/exp/exp_main.py", line 391, in test
+    rep_store['rep'+str(n)] = reps[n].detach().cpu().numpy()
+                              ^^^^^^^^^^^^^^
+AttributeError: 'numpy.ndarray' object has no attribute 'detach'
+Traceback (most recent call last):
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/run_longExp.py", line 150, in <module>
+    exp.test(setting, test=1)
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/exp/exp_main.py", line 391, in test
+    rep_store['rep'+str(n)] = reps[n].detach().cpu().numpy()
+                              ^^^^^^^^^^^^^^
+AttributeError: 'numpy.ndarray' object has no attribute 'detach'
+Traceback (most recent call last):
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/run_longExp.py", line 150, in <module>
+    exp.test(setting, test=1)
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/exp/exp_main.py", line 391, in test
+    rep_store['rep'+str(n)] = reps[n].detach().cpu().numpy()
+                              ^^^^^^^^^^^^^^
+AttributeError: 'numpy.ndarray' object has no attribute 'detach'
+usage: run_longExp.py [-h] [--random_seed RANDOM_SEED]
+                      [--is_training IS_TRAINING] [--model_id MODEL_ID]
+                      [--model MODEL] --data DATA [--root_path ROOT_PATH]
+                      [--data_path DATA_PATH] [--features FEATURES]
+                      [--target TARGET] [--freq FREQ]
+                      [--checkpoints CHECKPOINTS] [--seq_len SEQ_LEN]
+                      [--label_len LABEL_LEN] [--pred_len PRED_LEN]
+                      [--alpha_freq ALPHA_FREQ] [--fc_dropout FC_DROPOUT]
+                      [--head_dropout HEAD_DROPOUT] [--patch_len PATCH_LEN]
+                      [--stride STRIDE] [--padding_patch PADDING_PATCH]
+                      [--revin REVIN] [--affine AFFINE]
+                      [--subtract_last SUBTRACT_LAST]
+                      [--decomposition DECOMPOSITION]
+                      [--kernel_size KERNEL_SIZE] [--individual INDIVIDUAL]
+                      [--embed_type EMBED_TYPE] [--enc_in ENC_IN]
+                      [--dec_in DEC_IN] [--c_out C_OUT] [--d_model D_MODEL]
+                      [--n_heads N_HEADS] [--e_layers E_LAYERS]
+                      [--d_layers D_LAYERS] [--d_ff D_FF]
+                      [--moving_avg MOVING_AVG] [--factor FACTOR] [--distil]
+                      [--dropout DROPOUT] [--embed EMBED]
+                      [--activation ACTIVATION] [--output_attention]
+                      [--do_predict] [--level_dim LEVEL_DIM]
+                      [--norm_name NORM_NAME] [--n_block N_BLOCK] [--pe PE]
+                      [--r_ema R_EMA] [--num_workers NUM_WORKERS] [--itr ITR]
+                      [--gamma GAMMA] [--train_epochs TRAIN_EPOCHS]
+                      [--batch_size BATCH_SIZE] [--patience PATIENCE]
+                      [--learning_rate LEARNING_RATE] [--des DES]
+                      [--loss LOSS] [--lradj LRADJ] [--pct_start PCT_START]
+                      [--use_amp] [--use_gpu USE_GPU] [--gpu GPU]
+                      [--use_multi_gpu] [--devices DEVICES] [--test_flop]
+run_longExp.py: error: unrecognized arguments: --jepa 0
+Traceback (most recent call last):
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/run_longExp.py", line 179, in <module>
+    exp.test(setting, test=1)
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/exp/exp_main.py", line 374, in test
+    pred = outputs[-1][:, :, f_dim:].detach().cpu().numpy()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/run_longExp.py", line 150, in <module>
+    exp.test(setting, test=1)
+  File "/data/lyh_file/research_lab/timeseries/forecasting/GoodModel/exp/exp_main.py", line 413, in test
+    np.save(folder_path + 'pred.npy', preds)
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/numpy/lib/_npyio_impl.py", line 581, in save
+    format.write_array(fid, arr, allow_pickle=allow_pickle,
+  File "/home/lyh/.conda/envs/ts/lib/python3.12/site-packages/numpy/lib/format.py", line 754, in write_array
+    array.tofile(fp)
+KeyboardInterrupt
+usage: run_longExp.py [-h] [--random_seed RANDOM_SEED]
+                      [--is_training IS_TRAINING] [--model_id MODEL_ID]
+                      [--model MODEL] --data DATA [--root_path ROOT_PATH]
+                      [--data_path DATA_PATH] [--features FEATURES]
+                      [--target TARGET] [--freq FREQ]
+                      [--checkpoints CHECKPOINTS] [--seq_len SEQ_LEN]
+                      [--label_len LABEL_LEN] [--pred_len PRED_LEN]
+                      [--alpha_freq ALPHA_FREQ] [--fc_dropout FC_DROPOUT]
+                      [--head_dropout HEAD_DROPOUT] [--patch_len PATCH_LEN]
+                      [--stride STRIDE] [--padding_patch PADDING_PATCH]
+                      [--revin REVIN] [--affine AFFINE]
+                      [--subtract_last SUBTRACT_LAST]
+                      [--decomposition DECOMPOSITION]
+                      [--kernel_size KERNEL_SIZE] [--individual INDIVIDUAL]
+                      [--embed_type EMBED_TYPE] [--enc_in ENC_IN]
+                      [--dec_in DEC_IN] [--c_out C_OUT] [--d_model D_MODEL]
+                      [--n_heads N_HEADS] [--e_layers E_LAYERS]
+                      [--d_layers D_LAYERS] [--d_ff D_FF]
+                      [--moving_avg MOVING_AVG] [--factor FACTOR] [--distil]
+                      [--dropout DROPOUT] [--embed EMBED]
+                      [--activation ACTIVATION] [--output_attention]
+                      [--do_predict] [--level_dim LEVEL_DIM]
+                      [--norm_name NORM_NAME] [--n_block N_BLOCK] [--pe PE]
+                      [--r_ema R_EMA] [--num_workers NUM_WORKERS] [--itr ITR]
+                      [--gamma GAMMA] [--train_epochs TRAIN_EPOCHS]
+                      [--batch_size BATCH_SIZE] [--patience PATIENCE]
+                      [--learning_rate LEARNING_RATE] [--des DES]
+                      [--loss LOSS] [--lradj LRADJ] [--pct_start PCT_START]
+                      [--use_amp] [--use_gpu USE_GPU] [--gpu GPU]
+                      [--use_multi_gpu] [--devices DEVICES] [--test_flop]
+run_longExp.py: error: unrecognized arguments: --jepa 0

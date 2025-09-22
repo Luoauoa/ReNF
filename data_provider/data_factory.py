@@ -12,14 +12,16 @@ data_dict = {
 }
 
 
-def data_provider(args, flag):
+def data_provider(args, flag, pred_len=None):
+    if pred_len is None:
+        pred_len = args.pred_len
     Data = data_dict[args.data]
     timeenc = 0 if args.embed != 'timeF' else 1
 
     if flag == 'test':
         shuffle_flag = False
-        drop_last = False
-        batch_size = args.batch_size
+        drop_last = False           # this ensures the truthness of the final test loss
+        batch_size = args.batch_size  # this will affect the value of test loss showed in the training phase and also the training dynamics due to the 'BatchNormalization'
         freq = args.freq
     elif flag == 'pred':
         shuffle_flag = False
@@ -29,7 +31,7 @@ def data_provider(args, flag):
         Data = Dataset_Pred
     else:  
         shuffle_flag = True
-        drop_last = True      # drop last for train and validation set
+        drop_last = True              # drop last for train and validation set
         batch_size = args.batch_size
         freq = args.freq
 
@@ -37,7 +39,7 @@ def data_provider(args, flag):
         root_path=args.root_path,
         data_path=args.data_path,
         flag=flag,
-        size=[args.seq_len, args.label_len, args.pred_len],
+        size=[args.seq_len, args.label_len, pred_len],
         features=args.features,
         target=args.target,
         timeenc=timeenc,
