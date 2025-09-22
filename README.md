@@ -18,4 +18,4 @@
 ## Supported Datasets
 - ETTh1/ETTh2, ETTm1/ETTm2
 - Electricity, Traffic, Weather, Solar
-- Others including PEMS04, PEMS08, Illness
+- Others
