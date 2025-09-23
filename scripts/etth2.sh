@@ -39,11 +39,11 @@ do
       --d_ff 128\
       --alpha_freq 0.0\
       --gamma 0.3 \
-      --dropout 0.3\
+      --dropout 0.1\
       --des 'Exp' \
       --patience 3\
       --train_epochs 5 \
-      --itr 1 --batch_size 16 --learning_rate 6e-4 >logs/LongForecasting/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.log 
+      --itr 1 --batch_size 16 --learning_rate 5e-4 >logs/LongForecasting/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.log 
 done
 
 for pred_len in 192 
@@ -57,7 +57,7 @@ do
       --model $model_name \
       --data ${data_name} \
       --features M \
-      --pe 0\
+      --pe 1\
       --revin 1\
       --d_layers 3\
       --level_dim 1\
@@ -67,7 +67,7 @@ do
       --d_ff 256\
       --alpha_freq 0.0\
       --gamma 0.3 \
-      --dropout 0.3\
+      --dropout 0.1\
       --des 'Exp' \
       --patience 3\
       --train_epochs 5 \
@@ -91,14 +91,14 @@ do
       --level_dim 1\
       --seq_len $seq_len \
       --pred_len $pred_len \
-      --r_ema 0.999\
+      --r_ema 0.9992\
       --d_ff 512\
       --alpha_freq 0.0\
       --gamma 0.3 \
-      --dropout 0.3\
+      --dropout 0.5\
       --des 'Exp' \
       --patience 3\
-      --train_epochs 3 \
+      --train_epochs 5 \
       --itr 1 --batch_size 16 --learning_rate 6e-4 >logs/LongForecasting/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.log 
 done
 
@@ -113,19 +113,19 @@ do
       --model $model_name \
       --data ${data_name} \
       --features M \
-      --pe 0\
+      --pe 1\
       --revin 1\
       --d_layers 6\
       --level_dim 1\
       --seq_len $seq_len \
       --pred_len $pred_len \
-      --r_ema 0.999\
+      --r_ema 0.9992\
       --d_ff 512\
-      --alpha_freq 0.0\
-      --gamma 0.1 \
-      --dropout 0.3\
+      --alpha_freq 0.3\
+      --gamma 0.8 \
+      --dropout 0.5\
       --des 'Exp' \
       --patience 3\
       --train_epochs 5 \
-      --itr 1 --batch_size 16 --learning_rate 6e-4 >logs/LongForecasting/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.log 
+      --itr 1 --batch_size 16 --learning_rate 2e-4 >logs/LongForecasting/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.log 
 done
