@@ -121,8 +121,8 @@ do
       --pred_len $pred_len \
       --r_ema 0.9992\
       --d_ff 512\
-      --alpha_freq 0.3\
-      --gamma 0.8 \
+      --alpha_freq 0.25\
+      --gamma 0.9 \
       --dropout 0.5\
       --des 'Exp' \
       --patience 3\
