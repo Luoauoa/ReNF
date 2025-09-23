@@ -70,10 +70,11 @@ do
       --d_ff 512\
       --r_ema 0.998\
       --alpha_freq 0.2\
-      --dropout 0.2\
-      --gamma 0.7\
+      --dropout 0.1\
+      --gamma 0.9\
       --des 'Exp' \
       --patience 2\
       --train_epochs 5 \
       --itr 1 --batch_size 64 --learning_rate 5e-4 >logs/LongForecasting03/$model_name'_'${model_id_name}'_'$seq_len'_'$pred_len.log 
 done
+
