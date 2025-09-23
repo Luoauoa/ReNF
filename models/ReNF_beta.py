@@ -184,7 +184,7 @@ class DecoderBlock(nn.Module):
             act='nonlinear'
             # drop_in = min(drop_in * (i + 1), 0.6)
             drop_in_layer = max(drop_in * (0.8 ** i), 0.05)
-            drop_in_layer = 0.
+            # drop_in_layer = 0.
             # drop_in_layer = min(drop_in * (i + 1), 0.6)
             self.cascade.append(MidBlock(d_cat, self.pred_base * (i + 1), d_ff, n_b, drop_ff, drop_in_layer, act, norm))
 
