@@ -92,12 +92,13 @@ do
       --pred_len $pred_len \
       --r_ema 0.996 \
       --d_ff 3072\
-      --gamma 0.2 \
+      --gamma 0.3 \
+      --alpha_freq 0.05\
       --dropout 0.92\
       --des 'Exp' \
       --patience 10\
-      --train_epochs 20 \
-      --itr 1 --batch_size 128 --learning_rate 6e-4 >logs/LongForecasting/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.log 
+      --train_epochs 10 \
+      --itr 1 --batch_size 128 --learning_rate 5e-4 >logs/LongForecasting/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.log 
 done
 
 # # very special case
