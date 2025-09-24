@@ -18,7 +18,7 @@ class Model(nn.Module):
         self.L = configs.level_dim
         if self.rev_in:
             self.revin_layer = RevIN(d_inputs[-1], affine=True, subtract_last=False)
-        self.decoder = CapDecoder(d_inputs, self.pred_len, n_c=configs.d_layers, d_ff=configs.d_ff, dropout=configs.dropout, pe=configs.pe)
+        self.decoder = Decoder(d_inputs, self.pred_len, n_c=configs.d_layers, d_ff=configs.d_ff, dropout=configs.dropout, pe=configs.pe)
 
 
     def forward(self, x, return_rep=False):
@@ -39,9 +39,9 @@ class Model(nn.Module):
             return ys
 
 
-class CapDecoder(nn.Module):
+class Decoder(nn.Module):
     def __init__(self, d_inputs, d_pred, n_c=3, d_ff=256, dropout=0., pe=False):
-        super(CapDecoder, self).__init__()
+        super(Decoder, self).__init__()
         self.receiver = DecoderBlock(d_ff, d_inputs[0], d_pred, n_c, drop_ff=dropout)
         self.d_inputs = d_inputs
         self.pred_len = d_pred
