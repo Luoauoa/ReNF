@@ -37,7 +37,7 @@ do
       --seq_len $seq_len \
       --pred_len $pred_len \
       --r_ema 0.996\
-      --alpha_freq 0.4\
+      --alpha_freq 0.5\
       --d_ff 64 \
       --dropout 0.8\
       --gamma 0.1\
@@ -65,9 +65,9 @@ do
       --seq_len $seq_len \
       --pred_len $pred_len \
       --r_ema 0.996\
-      --alpha_freq 0.6\
+      --alpha_freq 0.3\
       --d_ff 64 \
-      --dropout 0.8\
+      --dropout 0.7\
       --gamma 0.1\
       --des 'Exp' \
       --train_epochs 5 \
@@ -93,13 +93,13 @@ do
       --seq_len $seq_len \
       --pred_len $pred_len \
       --r_ema 0.996\
-      --alpha_freq 0.4\
+      --alpha_freq 0.5\
       --d_ff 64 \
-      --dropout 0.8\
+      --dropout 0.7\
       --gamma 0.1\
       --des 'Exp' \
       --train_epochs 5 \
-      --itr 1 --batch_size 64 --learning_rate 4e-3 >logs/LongForecasting02/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.logs 
+      --itr 1 --batch_size 64 --learning_rate 2e-3 >logs/LongForecasting02/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.logs 
 done
 
 for pred_len in 720
@@ -129,3 +129,4 @@ do
       --train_epochs 5 \
       --itr 1 --batch_size 64 --learning_rate 2e-3 >logs/LongForecasting02/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.logs 
 done
+
