@@ -90,10 +90,10 @@ do
       --level_dim 1\
       --seq_len $seq_len \
       --pred_len $pred_len \
-      --r_ema 0.998 \
+      --r_ema 0.996 \
       --d_ff 3072\
       --gamma 0.2 \
-      --dropout 0.9\
+      --dropout 0.92\
       --des 'Exp' \
       --patience 10\
       --train_epochs 20 \
