@@ -66,7 +66,7 @@ do
       --alpha_freq 0.0\
       --d_ff 3072\
       --gamma 0.3 \
-      --dropout 0.9\
+      --dropout 0.92\
       --des 'Exp' \
       --patience 3\
       --train_epochs 10 \
