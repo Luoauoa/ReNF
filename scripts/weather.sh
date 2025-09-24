@@ -7,7 +7,7 @@ fi
 if [ ! -d "./logs/LongForecasting02" ]; then
     mkdir ./logs/LongForecasting02
 fi
-seq_len=512
+seq_len=720
 model_name=ReNF_beta
 
 root_path_name=../dataset/weather/
@@ -32,17 +32,17 @@ do
       --revin 1\
       --norm_name 'layer'\
       --pe 1\
-      --d_layers 2\
+      --d_layers 3\
       --n_block 1\
       --seq_len $seq_len \
       --pred_len $pred_len \
       --r_ema 0.996\
-      --alpha_freq 0.6\
-      --d_ff 128 \
-      --dropout 0.45\
+      --alpha_freq 0.4\
+      --d_ff 64 \
+      --dropout 0.8\
       --gamma 0.1\
       --des 'Exp' \
-      --train_epochs 3 \
+      --train_epochs 5 \
       --itr 1 --batch_size 64 --learning_rate 4e-3 >logs/LongForecasting02/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.logs 
 done
 
@@ -67,10 +67,10 @@ do
       --r_ema 0.996\
       --alpha_freq 0.6\
       --d_ff 64 \
-      --dropout 0.4\
+      --dropout 0.8\
       --gamma 0.1\
       --des 'Exp' \
-      --train_epochs 3 \
+      --train_epochs 5 \
       --itr 1 --batch_size 64 --learning_rate 4e-3 >logs/LongForecasting02/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.logs 
 done
 
@@ -93,12 +93,12 @@ do
       --seq_len $seq_len \
       --pred_len $pred_len \
       --r_ema 0.996\
-      --alpha_freq 0.6\
+      --alpha_freq 0.4\
       --d_ff 64 \
-      --dropout 0.45\
+      --dropout 0.8\
       --gamma 0.1\
       --des 'Exp' \
-      --train_epochs 3 \
+      --train_epochs 5 \
       --itr 1 --batch_size 64 --learning_rate 4e-3 >logs/LongForecasting02/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.logs 
 done
 
@@ -123,10 +123,9 @@ do
       --r_ema 0.996\
       --alpha_freq 0.1\
       --d_ff 64 \
-      --dropout 0.45\
+      --dropout 0.8\
       --gamma 0.1\
       --des 'Exp' \
-      --train_epochs 3 \
+      --train_epochs 5 \
       --itr 1 --batch_size 64 --learning_rate 2e-3 >logs/LongForecasting02/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.logs 
 done
-
