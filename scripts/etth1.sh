@@ -129,7 +129,6 @@ do
       --itr 1 --batch_size 128 --learning_rate 5e-4 >logs/LongForecasting/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.log 
 done
 
-# # very special case
 seq_len=336
 for pred_len in 720
 do
