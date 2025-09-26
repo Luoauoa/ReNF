@@ -8,7 +8,7 @@ if [ ! -d "./logs/LongForecasting02" ]; then
     mkdir ./logs/LongForecasting02
 fi
 seq_len=512
-model_name=ReNF_alpha
+model_name=ReNF_beta
 
 root_path_name=../dataset/electricity/
 data_path_name=electricity.csv
