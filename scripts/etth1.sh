@@ -16,7 +16,7 @@ model_id_name=ETTh1
 data_name=ETTh1
 
 random_seed=2021
-# There are two versions of configurations (Hyperparameter searching) achieving similar results. The following is an example.
+# Large d_ff is not necessary, a small d_ff can  achieve similar results. The following is an example.
 for pred_len in 96
 do
     python -u run_longExp.py \
