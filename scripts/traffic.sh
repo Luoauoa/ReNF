@@ -29,7 +29,7 @@ do
       --data ${data_name[0]} \
       --features M \
       --revin 1\
-      --d_layers 6\
+      --d_layers 3\
       --n_block 1\
       --pe 0\
       --seq_len $seq_len \
