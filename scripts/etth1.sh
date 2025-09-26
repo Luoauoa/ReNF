@@ -58,7 +58,7 @@ do
       --features M \
       --pe 1\
       --revin 1\
-      --d_layers 4\
+      --d_layers 3\
       --level_dim 1\
       --seq_len $seq_len \
       --pred_len $pred_len \
