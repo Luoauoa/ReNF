@@ -112,7 +112,7 @@ do
       --model $model_name \
       --data ${data_name} \
       --features M \
-      --pe 1\
+      --pe 0\
       --revin 1\
       --d_layers 3\
       --level_dim 1\
