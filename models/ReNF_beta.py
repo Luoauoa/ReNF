@@ -207,6 +207,6 @@ class DecoderBlock(nn.Module):
         else:
             return out
 
-    @torch.no_grad()
-    def predict(self, x):
-        return self.forward(x)
+    # @torch.no_grad()
+    # def predict(self, x):
+    #     return self.forward(x)
