@@ -65,7 +65,7 @@ do
       --seq_len $seq_len \
       --pred_len $pred_len \
       --r_ema 0.996\
-      --alpha_freq 0.3\
+      --alpha_freq 0.5\
       --d_ff 64 \
       --dropout 0.7\
       --gamma 0.1\
