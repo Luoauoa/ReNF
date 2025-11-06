@@ -38,7 +38,7 @@ do
       --r_ema 0.999\
       --alpha_freq 0.7\
       --d_ff 2048\
-      --dropout 0.3\
+      --dropout 0.5\
       --des 'Exp' \
       --train_epochs 10 \
       --patience 3 \
