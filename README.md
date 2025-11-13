@@ -1,4 +1,4 @@
-# ReNF: Rethinking the Design Space of Neural Long-Term Time Series Forecasters. (For Review)
+# ReNF: Rethinking the Design Space of Neural Long-Term Time Series Forecasters. 
 
 
 ## Quick Start
