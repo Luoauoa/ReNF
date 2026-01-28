@@ -335,15 +335,14 @@ class Exp_Main(Exp_Basic):
         return pred_com
 
     def test(self, setting, test=0):
-        L = self.args.level_dim
         if test:
             print('loading model')
             self.model.load_state_dict(torch.load(os.path.join('./checkpoints/' + setting, 'checkpoint.pth')))
 
-        # Pre-calculate total samples for efficient array allocation
-        total_samples = len(self.test_loader.dataset)
-        pred_len = self.args.pred_len
-        n_features = self.test_loader.dataset[0][1].shape[-1] if hasattr(self.test_loader.dataset, '__getitem__') else 7
+        # # Pre-calculate total samples for efficient array allocation
+        # total_samples = len(self.test_loader.dataset)
+        # pred_len = self.args.pred_len
+        # n_features = self.test_loader.dataset[0][1].shape[-1] if hasattr(self.test_loader.dataset, '__getitem__') else 7
         
         # Pre-allocate arrays for better performance
         all_preds = []
