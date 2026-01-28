@@ -68,7 +68,6 @@ class Exp_Main(Exp_Basic):
         return criterion
 
     def _update_model_ema(self, model_pre, model, decay=0.998):
-        # The y_encoder is updated using EMA to slowly track the progress of x_encoder
         return ema_update(model_pre, model, decay)
 
     def vali(self, vali_data, vali_loader, criterion):
