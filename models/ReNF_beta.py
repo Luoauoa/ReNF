@@ -27,7 +27,7 @@ class Model(nn.Module):
         n_b = configs.n_block
         pe = configs.pe
 
-        self.decoder = CapDecoder(d_inputs, self.pred_len,
+        self.decoder = Decoder(d_inputs, self.pred_len,
                                   n_c, n_b=n_b, d_ff=d_ff, dropout=dropout, pe=pe, norm=configs.norm_name)
             
         # self.apply(self._init_weights)
@@ -58,33 +58,39 @@ class Model(nn.Module):
         else:
             return ys
 
-class CapDecoder(nn.Module):
-    def __init__(self, d_inputs, d_pred, n_c=3, n_b=1, d_ff=256, dropout=0., pe=False, norm='instance'):
-        super(CapDecoder, self).__init__()
-        self.receiver = DecoderBlock(d_ff, d_inputs[0], d_pred, n_c, n_b, drop_ff=dropout, norm=norm)
+class Decoder(nn.Module):
+    def __init__(self, d_inputs, d_pred, n_c=3, d_ff=256, dropout=0., pe=False, exv_use=0):
+        super(Decoder, self).__init__()
+        self.receiver = DecoderBlock(d_ff, d_inputs[0], d_pred, n_c, drop_ff=dropout)
         self.d_inputs = d_inputs
         self.pred_len = d_pred
-
         self.pe = pe
         W_pos = torch.empty((d_inputs[0], d_inputs[-1]))
         nn.init.uniform_(W_pos, -0.02, 0.02)
         self.embedding = nn.Parameter(W_pos)
+        self.exv_use = exv_use
+        if exv_use:
+            self.fea_proj = nn.Sequential(
+                                            nn.Linear(4, 128, bias=False),
+                                            nn.GELU(),
+                                            nn.Dropout(dropout),
+                                            nn.Linear(128, d_inputs[-1]),
+                                        )
 
-        # M_pos = torch.empty((d_inputs[0], d_inputs[-1]))
-        # nn.init.xavier_uniform_(M_pos)
-        # M_pos = M_pos * 0.1 + 1.0
-        # self.mask = nn.Parameter(M_pos)
-        
-    def forward(self, x, return_rep=False):
+    def forward(self, x, x_mark=None, return_rep=False):
         if self.pe:
             x = x + self.embedding
+        if x_mark is not None and self.exv_use:
+            x = x + self.fea_proj(x_mark)
         result = self.receiver(x.transpose(1, 2), return_rep)
         if return_rep:
             ys, reps = result
-            ys = [y.transpose(1, 2) for y in ys]
+        else:
+            ys = result
+        ys = [y.transpose(1, 2) for y in ys]
+        if return_rep:
             return ys, reps
         else:
-            ys = [y.transpose(1, 2) for y in result]
             return ys
 
 class ForeBlock(nn.Module):
