@@ -15,7 +15,12 @@
    # ... other datasets available
    ```
 
-## Supported Datasets
-- ETTh1/ETTh2, ETTm1/ETTm2
-- Electricity, Traffic, Weather, Solar
-- Others (M4, PEMS...)
+## Cite
+```bibtex
+@article{lu2025renf,
+  title={ReNF: Rethinking the Design Space of Neural Long-Term Time Series Forecasters},
+  author={Lu, Yihang and Meng, Xianwei and Chen, Enhong},
+  journal={arXiv preprint arXiv:2509.25914},
+  year={2025}
+}
+```
