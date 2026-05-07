@@ -1,5 +1,6 @@
 # ReNF: Rethinking the Principles of Neural Long-Term Time Series Forecasters. 
 
+ReNF has been accepted in ICML2026.
 
 ## Quick Start
 
