@@ -2,7 +2,7 @@
 
 This is the official implementation of ReNF: Rethinking the Principles of Neural Long-Term Time Series Forecasters.
 
-ReNF has been accepted by ICML2026.
+**ReNF has been accepted by ICML2026.**
 
 ## Quick Start
 
