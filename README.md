@@ -4,6 +4,8 @@ This is the official implementation of ReNF: Rethinking the Principles of Neural
 
 **ReNF has been accepted by ICML2026.**
 
+**(The model was upgraded a little bit after the version in the paper, feel free to contact me if any problems reproducing it.)**
+
 ## Quick Start
 
 1. **Download datasets** from [Google Drive](https://drive.google.com/file/d/1l51QsKvQPcqILT3DwfjCgx8Dsg2rpjot/view?usp=drive_link) or [Baidu Cloud](https://pan.baidu.com/s/11AWXg1Z6UwjHzmto4hesAA?pwd=9qjr)
