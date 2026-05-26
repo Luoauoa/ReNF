@@ -277,12 +277,7 @@ class Exp_Main(Exp_Basic):
             # Optimal combination
             if n == 0:
                 pred_com = torch.zeros_like(batch_y)
-            elif n == 1:
-                pred_com = torch.zeros_like(batch_y)
-                seq_len = min(outputs[0].shape[1], batch_y.shape[1])
-                pred_com[:, :seq_len, :] = outputs[0][:, :seq_len, :]
             else:
-                # Start with first output
                 pred_com = torch.zeros_like(batch_y)
                 seq_len = min(outputs[0].shape[1], batch_y.shape[1])
                 pred_com[:, :seq_len, :] = outputs[0][:, :seq_len, :]
