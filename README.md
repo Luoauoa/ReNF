@@ -1,4 +1,4 @@
-# ReNF: Rethinking the Principles of Neural Long-Term Time Series Forecasters. 
+# ReNF: Rethinking the Design of Neural Long-Term Time Series Forecasters. 
 
 This is the official implementation of ReNF: Rethinking the Principles of Neural Long-Term Time Series Forecasters.
 
