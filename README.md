@@ -19,6 +19,10 @@ This is the official implementation of ReNF: Rethinking the Design of Neural Lon
    bash ./scripts/weather.sh     # Weather dataset
    # ... other datasets available
    ```
+## Note on adapting for other backbones.
+To adapt BDO to other backbones, such as a transformer-based forecaster. It should identify the `minimum but useful forecasting block` as the sub-forecaster.
+
+That means the sub-forecaster is at least already capable of generating moderately good forecasts. Then, applying BDO to connect these sub-forecasters can probably lead to better results when compared with the original version.
 
 ## Cite
 ```bibtex
