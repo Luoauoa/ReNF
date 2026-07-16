@@ -1,9 +1,9 @@
 # ReNF: Rethinking the Design of Neural Long-Term Time Series Forecasters. 
 
 <p align="center">
-<a href="https://arxiv.org/abs/2509.25914v6"><img src="https://img.shields.io/badge/arXiv-2509.25914v6-orange?logo=arXiv"></a>
 <a href="https://icml.cc/"><img src="https://img.shields.io/badge/ICML-2026-blue.svg"></a>
 <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg?logo=github"></a>
+<a href="https://arxiv.org/abs/2509.25914v6"><img src="https://img.shields.io/badge/arXiv-2509.25914v6-orange?logo=arXiv"></a>
 </p>
 
 https://arxiv.org/html/2509.25914v6
